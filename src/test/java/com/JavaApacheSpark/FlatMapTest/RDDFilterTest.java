@@ -19,7 +19,7 @@ public class RDDFilterTest {
             JavaRDD<String> myRDD = sc.textFile(filePath);
 
             var words = myRDD.flatMap(word -> List.of(word.split("\\s")).iterator())
-                    .filter(word -> (word != null) && (!word.trim().isEmpty()));
+                    .filter(word -> !word.trim().isEmpty());
             System.out.printf("Total lines: %s\n", words.count());
             System.out.printf("first 10 words: %s\n", words.take(10));
         }
